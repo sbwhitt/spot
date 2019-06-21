@@ -1,20 +1,15 @@
-import spotipy
-import spotipy.util as util
-from config import *
-from playlists import *
-
-client_id = SPOTIPY_CLIENT_ID
-client_secret = SPOTIPY_CLIENT_SECRET
-redirect_url = SPOTIPY_REDIRECT_URI
-
-scope = 'playlist-read-private'
+import playlists as play
+import tracks as track
 
 username = input('enter spotify username: ')
 
-token = util.prompt_for_user_token(username, scope, client_id=client_id, client_secret=client_secret, 
-    redirect_uri=redirect_url)
+#after inputing username, you will be redirected to a url, copy that url and paste into console to authenticate
 
-spot = spotipy.Spotify(auth=token)
+#examples of retrieving graphed info below
+#i recommend using only one object at a time, but can do both, will have to authenticate multiple times
 
-p = playlists(spot, username)
-p.show_graph()
+#tracks = track.tracks(username)
+#tracks.show_top_artists_graph(10)
+
+#p = play.playlists(username)
+#p.show_graph()
