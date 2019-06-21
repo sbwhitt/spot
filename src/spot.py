@@ -1,7 +1,5 @@
 import spotipy
 import spotipy.util as util
-import matplotlib
-import matplotlib.pyplot as plt
 from config import *
 from playlists import *
 
