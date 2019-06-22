@@ -3,7 +3,6 @@ import spotipy.util as util
 from config import *
 import matplotlib
 import matplotlib.pyplot as plt
-import math
 
 class playlists:
     def __init__(self, username):

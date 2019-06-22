@@ -3,7 +3,6 @@ import spotipy.util as util
 from config import *
 import matplotlib
 import matplotlib.pyplot as plt
-import math
 import operator
 
 class tracks:
@@ -47,7 +46,7 @@ class tracks:
         num_saved_tracks = len(self.user_tracks)
 
         print('total number of saved tracks: ' + str(num_saved_tracks))
-        print('total average popularity of saved tracks (from 0 to 100): ' + str(math.floor(self.total_pop/num_saved_tracks)))
+        print('average popularity of saved tracks (from 0 to 100): ' + str(round(self.total_pop/num_saved_tracks)))
 
     #graph of most user saved tracks of top <num_artists> artists
     def show_top_artists_graph(self, num_artists):

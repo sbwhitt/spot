@@ -10,8 +10,8 @@ username = input("enter spotify username: ")
 #i recommend using only one object at a time, but can do both, will have to authenticate multiple times if you do
 
 #tracks = track.tracks(username)
-#tracks.show_top_artists_graph(10)
 #tracks.print_user_tracks_info()
+#tracks.show_top_artists_graph(10)
 
-p = play.playlists(username)
-p.show_graphs()
+#p = play.playlists(username)
+#p.show_graphs()
