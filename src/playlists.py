@@ -18,6 +18,7 @@ class playlists:
     def show_graphs(self):
         plt.show()
 
+    #combined graph of both tracks and popularity average of user playlists
     def build_tracks_popularity_graph(self):
         tracks = self.__sort_alpha(self.__get_tracks_per_playlist())
         pop = self.__sort_alpha(self.__get_popularity_per_playlist())
@@ -36,6 +37,7 @@ class playlists:
 
         plt.draw()
     
+    #graph of user playlists ordered by number of tracks
     def build_tracks_graph(self):
         tracks = self.__sort_numeric(self.__get_tracks_per_playlist())
         playlist_names = tracks[0]
@@ -46,6 +48,7 @@ class playlists:
         chart.set_title("number of tracks per playlist")
         plt.draw()
     
+    #graph of playlists versus playlist popularity averages
     def build_popularity_graph(self):
         tracks = self.__sort_numeric(self.__get_popularity_per_playlist())
         playlist_names = tracks[0]
@@ -56,7 +59,6 @@ class playlists:
         chart.set_title("average popularity per playlist (0-100)")
         plt.draw()
 
-    #graph of user playlists ordered by number of tracks
     def __get_tracks_per_playlist(self):
         user_playlists = self.__parse_user_playlists()
 
@@ -78,7 +80,6 @@ class playlists:
 
         return user_playlists
 
-    #graph of playlists versus playlist popularity averages
     def __get_popularity_per_playlist(self):
         pop_averages = []
 
