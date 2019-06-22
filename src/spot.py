@@ -11,7 +11,7 @@ username = input("enter spotify username: ")
 
 #tracks = track.tracks(username)
 #tracks.show_top_artists_graph(10)
+#tracks.print_user_tracks_info()
 
-#p = play.playlists(username)
-#p.print_playlist_popularity_average("sr")
-#p.show_graph()
+p = play.playlists(username)
+p.show_graphs()

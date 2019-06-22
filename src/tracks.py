@@ -71,4 +71,3 @@ class tracks:
         fig, chart = plt.subplots()
         chart.bar(artist_names, num_artist_tracks)
         plt.show()
-        
