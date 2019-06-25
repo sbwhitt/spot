@@ -3,6 +3,7 @@ import spotipy.util as util
 from config import *
 import matplotlib
 import matplotlib.pyplot as plt
+import operator
 
 class top:
     def __init__(self, username):
@@ -36,8 +37,19 @@ class top:
 
         plt.draw()
 
+    def build_top_genres_graph(self):
+        genres = self.__parse_top_artist_genres()
+
+        fig, chart = plt.subplots()
+
+        chart.barh(genres[0], genres[1])
+        chart.set_title("top artist genres")
+        chart.legend()
+
+        plt.draw()
+
     def __parse_top_artists(self, num_artists):
-        user_top_artists = self.spot.current_user_top_artists(limit=num_artists)
+        user_top_artists = self.spot.current_user_top_artists(limit=50 if num_artists > 50 else num_artists)
 
         artist_names = []
         artist_popularities = []
@@ -48,7 +60,7 @@ class top:
         return [artist_names, artist_popularities]
 
     def __parse_top_tracks(self, num_tracks):
-        user_top_tracks = self.spot.current_user_top_tracks(limit=num_tracks)
+        user_top_tracks = self.spot.current_user_top_tracks(limit=50 if num_tracks > 50 else num_tracks)
 
         track_names = []
         track_popularities = []
@@ -57,3 +69,26 @@ class top:
             track_popularities.append(track['popularity'])
 
         return [track_names, track_popularities]        
+    
+    def __parse_top_artist_genres(self):
+        user_top_artists = self.spot.current_user_top_artists(limit=50)
+        genres = {}
+
+        for artist in user_top_artists['items']:
+            for genre in artist['genres']:
+                if genres.get(genre):
+                    genres[genre] = genres.get(genre) + 1
+                else:
+                    genres[genre] = 1
+        
+        sorted_genres = sorted(genres.items(), key=operator.itemgetter(1), reverse=False)
+        genre_names = []
+        genre_amounts = []
+        for genre in sorted_genres:
+            if genre[1] < 3:
+                sorted_genres.remove(genre)
+            else:
+                genre_names.append(genre[0])
+                genre_amounts.append(genre[1])
+        
+        return [genre_names, genre_amounts]

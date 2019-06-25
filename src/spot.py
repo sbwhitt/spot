@@ -30,7 +30,8 @@ p.show_graphs()
 
 
 t = tp.top(username)
-t.build_top_artist_graph(25)
-t.build_top_tracks_graph(25)
+#t.build_top_artist_graph(25)
+#t.build_top_tracks_graph(25)
+t.build_top_genres_graph()
 t.show_graphs()
 
