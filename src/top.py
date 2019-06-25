@@ -25,6 +25,17 @@ class top:
 
         plt.draw()
 
+    def build_top_tracks_graph(self, num_tracks=10):
+        tracks = self.__parse_top_tracks(50 if num_tracks > 50 else num_tracks)
+
+        fig, chart = plt.subplots()
+
+        chart.barh(tracks[0], tracks[1], label="top track at bottom")
+        chart.set_title("top tracks by affinity versus track popularity (0-100)")
+        chart.legend()
+
+        plt.draw()
+
     def __parse_top_artists(self, num_artists):
         user_top_artists = self.spot.current_user_top_artists(limit=num_artists)
 
@@ -35,3 +46,14 @@ class top:
             artist_popularities.append(artist['popularity'])
         
         return [artist_names, artist_popularities]
+
+    def __parse_top_tracks(self, num_tracks):
+        user_top_tracks = self.spot.current_user_top_tracks(limit=num_tracks)
+
+        track_names = []
+        track_popularities = []
+        for track in user_top_tracks['items']:
+            track_names.append(track['name'])
+            track_popularities.append(track['popularity'])
+
+        return [track_names, track_popularities]        
